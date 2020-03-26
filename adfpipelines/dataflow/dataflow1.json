@@ -1,0 +1,28 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText1",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Parquet1",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"script": "source(output(\n\t\tVendorID as string,\n\t\tlpep_pickup_datetime as string,\n\t\tLpep_dropoff_datetime as string,\n\t\tStore_and_fwd_flag as string,\n\t\tRateCodeID as string,\n\t\tPickup_longitude as string,\n\t\tPickup_latitude as string,\n\t\tDropoff_longitude as string,\n\t\tDropoff_latitude as string,\n\t\tPassenger_count as string,\n\t\tTrip_distance as string,\n\t\tFare_amount as string,\n\t\tExtra as string,\n\t\tMTA_tax as string,\n\t\tTip_amount as string,\n\t\tTolls_amount as string,\n\t\tEhail_fee as string,\n\t\tTotal_amount as string,\n\t\tPayment_type as string,\n\t\t{Trip_type } as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> source1\nsource1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'parquet',\n\ttruncate: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
+		}
+	}
+}
