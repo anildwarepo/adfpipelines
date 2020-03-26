@@ -1,0 +1,238 @@
+{
+	"name": "CopyPipeline_h37",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_h37",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "taxi-data//green_tripdata_2018-01-2.csv"
+					},
+					{
+						"name": "Destination",
+						"value": "container1"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings",
+							"skipLineCount": 0
+						}
+					},
+					"sink": {
+						"type": "CosmosDbSqlApiSink",
+						"writeBehavior": "insert",
+						"disableMetricsCollection": true
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "VendorID",
+									"type": "String"
+								},
+								"sink": {
+									"path": "vendorId"
+								}
+							},
+							{
+								"source": {
+									"name": "lpep_pickup_datetime",
+									"type": "String"
+								},
+								"sink": {
+									"path": "pickupDateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "lpep_dropoff_datetime",
+									"type": "String"
+								},
+								"sink": {
+									"path": "dropoffDateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "store_and_fwd_flag",
+									"type": "String"
+								},
+								"sink": {
+									"path": "storefwdFlag"
+								}
+							},
+							{
+								"source": {
+									"name": "RatecodeID",
+									"type": "String"
+								},
+								"sink": {
+									"path": "rateCodeID"
+								}
+							},
+							{
+								"source": {
+									"name": "PULocationID",
+									"type": "String"
+								},
+								"sink": {
+									"path": "puLocationId"
+								}
+							},
+							{
+								"source": {
+									"name": "DOLocationID",
+									"type": "String"
+								},
+								"sink": {
+									"path": "doLocationId"
+								}
+							},
+							{
+								"source": {
+									"name": "passenger_count",
+									"type": "String"
+								},
+								"sink": {
+									"path": "passengerCount"
+								}
+							},
+							{
+								"source": {
+									"name": "trip_distance",
+									"type": "String"
+								},
+								"sink": {
+									"path": "tripDistance"
+								}
+							},
+							{
+								"source": {
+									"name": "fare_amount",
+									"type": "String"
+								},
+								"sink": {
+									"path": "fareAmount"
+								}
+							},
+							{
+								"source": {
+									"name": "extra",
+									"type": "String"
+								},
+								"sink": {
+									"path": "extra"
+								}
+							},
+							{
+								"source": {
+									"name": "mta_tax",
+									"type": "String"
+								},
+								"sink": {
+									"path": "mtaTax"
+								}
+							},
+							{
+								"source": {
+									"name": "tip_amount",
+									"type": "String"
+								},
+								"sink": {
+									"path": "tipAmount"
+								}
+							},
+							{
+								"source": {
+									"name": "tolls_amount",
+									"type": "String"
+								},
+								"sink": {
+									"path": "tollsAmount"
+								}
+							},
+							{
+								"source": {
+									"name": "ehail_fee",
+									"type": "String"
+								},
+								"sink": {
+									"path": "ehailFee"
+								}
+							},
+							{
+								"source": {
+									"name": "improvement_surcharge",
+									"type": "String"
+								},
+								"sink": {
+									"path": "improvementSurcharge"
+								}
+							},
+							{
+								"source": {
+									"name": "total_amount",
+									"type": "String"
+								},
+								"sink": {
+									"path": "totalAmount"
+								}
+							},
+							{
+								"source": {
+									"name": "payment_type",
+									"type": "String"
+								},
+								"sink": {
+									"path": "paymentType"
+								}
+							},
+							{
+								"source": {
+									"name": "trip_type",
+									"type": "String"
+								},
+								"sink": {
+									"path": "tripType"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_h37",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_h37",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

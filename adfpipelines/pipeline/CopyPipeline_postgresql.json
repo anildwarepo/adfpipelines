@@ -1,0 +1,58 @@
+{
+	"name": "CopyPipeline_postgresql",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_ajr",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "public.customer"
+					},
+					{
+						"name": "Destination",
+						"value": "dvdrental//"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "PostgreSqlSource"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings",
+							"maxConcurrentConnections": 10,
+							"blockSizeInMB": 4
+						}
+					},
+					"enableStaging": false,
+					"parallelCopies": 4
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_ajr",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_ajr",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

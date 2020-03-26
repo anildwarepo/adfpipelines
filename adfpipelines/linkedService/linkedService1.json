@@ -1,0 +1,19 @@
+{
+	"name": "linkedService1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "HDInsight",
+		"typeProperties": {
+			"clusterUri": "https://odxadfhdi123anildwahdi15.azurehdinsight.net",
+			"userName": "admin",
+			"isEspEnabled": false,
+			"fileSystem": "odxadfhdi123anildwahdi15filesystem1",
+			"linkedServiceName": {
+				"referenceName": "linkedService2",
+				"type": "LinkedServiceReference"
+			},
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkFOSUxEV0FBREZfZjJhNzEyM2MtOTU3OS00YjM2LWJjMDYtOTU0ZTg3YjY0MjI0Ig0KfQ=="
+		}
+	}
+}

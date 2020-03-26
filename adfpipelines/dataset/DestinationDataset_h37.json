@@ -1,0 +1,15 @@
+{
+	"name": "DestinationDataset_h37",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "CosmosDb1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "CosmosDbSqlApiCollection",
+		"typeProperties": {
+			"collectionName": "container1"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

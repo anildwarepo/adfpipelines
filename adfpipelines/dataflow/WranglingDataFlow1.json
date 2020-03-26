@@ -1,0 +1,29 @@
+{
+	"name": "WranglingDataFlow1",
+	"properties": {
+		"type": "WranglingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"name": "taxidataout",
+					"script": "",
+					"dataset": {
+						"referenceName": "taxidataout",
+						"type": "DatasetReference"
+					}
+				}
+			],
+			"sinks": [
+				{
+					"name": "taxidataout2",
+					"dataset": {
+						"referenceName": "taxidataout2",
+						"type": "DatasetReference"
+					},
+					"script": "sink(input(\n\t\tColumn_1 as string,\n\t\tColumn_2 as string,\n\t\tColumn_3 as string,\n\t\tColumn_4 as string,\n\t\tColumn_5 as string,\n\t\tColumn_6 as string,\n\t\tColumn_7 as string,\n\t\tColumn_8 as string,\n\t\tColumn_9 as string,\n\t\tColumn_10 as string,\n\t\tColumn_11 as string,\n\t\tColumn_12 as string,\n\t\tColumn_13 as string,\n\t\tColumn_14 as string,\n\t\tColumn_15 as string,\n\t\tColumn_16 as string,\n\t\tColumn_17 as string,\n\t\tColumn_18 as string,\n\t\tColumn_19 as string,\n\t\tColumn_20 as string,\n\t\tColumn_21 as string,\n\t\tColumn_22 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> taxidataout2"
+				}
+			],
+			"script": "section Section1; shared #\"taxidataout\" = let AdfDoc = Web.Contents(\"https://anildwaadlsv2.dfs.core.windows.net/folder2/output/15022018_180994_Root_TEST_PI-4120-01_VALUE_99515.csv?sv=2018-03-28&sig=inqaNA8Ks0Fh23WDZvLULlOkbQm2a6OwOkX%2FR2LPxZM%3D&spr=https&se=2019-09-11T15%3A44%3A31Z&srt=sco&ss=bf&sp=rwl\"), Csv = Csv.Document(AdfDoc, [Delimiter = \",\", Encoding = TextEncoding.Utf8, QuoteStyle = QuoteStyle.Csv]) in Csv;\r\nshared UserQuery = let\r\n  Source = taxidataout\r\nin\r\n  Source;"
+		}
+	}
+}

@@ -1,0 +1,16 @@
+{
+	"name": "trigger1",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/folder2/blobs//input",
+			"scope": "/subscriptions/3e0e14b3-7e28-4da7-97de-0f5cb324f030/resourceGroups/storage/providers/Microsoft.Storage/storageAccounts/anildwaadlsv2",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
