@@ -14,10 +14,10 @@
 			"sinks": [],
 			"transformations": [
 				{
-					"name": "merge-on-product-campaign-id"
+					"name": "MergeOnProductCampaignId"
 				}
 			],
-			"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: false) ~> clickstream\nsource(allowSchemaDrift: true,\n\tvalidateSchema: false) ~> crm-database\nclickstream, crm-database join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),\n\tjoinType:'inner',\n\tbroadcast: 'none')~> merge-on-product-campaign-id"
+			"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: false) ~> clickstream\nsource(allowSchemaDrift: true,\n\tvalidateSchema: false) ~> crm-database\nclickstream, crm-database join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),\n\tjoinType:'inner',\n\tbroadcast: 'none')~> MergeOnProductCampaignId"
 		}
 	}
 }
