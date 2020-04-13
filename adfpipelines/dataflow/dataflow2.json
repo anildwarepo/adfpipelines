@@ -11,13 +11,23 @@
 					"name": "crm-database"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"name": "WriteOutPutClickCountCRMDatabase"
+				}
+			],
 			"transformations": [
 				{
 					"name": "MergeOnProductCampaignId"
+				},
+				{
+					"name": "AggregateClickCount"
+				},
+				{
+					"name": "SelectTopProducts"
 				}
 			],
-			"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: false) ~> clickstream\nsource(allowSchemaDrift: true,\n\tvalidateSchema: false) ~> crm-database\nclickstream, crm-database join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),\n\tjoinType:'inner',\n\tbroadcast: 'none')~> MergeOnProductCampaignId"
+			"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: false) ~> clickstream\nsource(allowSchemaDrift: true,\n\tvalidateSchema: false) ~> crm-database\nclickstream, crm-database join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),\n\tjoinType:'inner',\n\tbroadcast: 'none')~> MergeOnProductCampaignId\nMergeOnProductCampaignId aggregate() ~> AggregateClickCount\nAggregateClickCount filter(ERROR_FUNCTION('')) ~> SelectTopProducts\nSelectTopProducts sink(skipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> WriteOutPutClickCountCRMDatabase"
 		}
 	}
 }
