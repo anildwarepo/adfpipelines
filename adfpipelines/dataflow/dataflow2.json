@@ -5,10 +5,10 @@
 		"typeProperties": {
 			"sources": [
 				{
-					"name": "source1"
+					"name": "clickstream"
 				},
 				{
-					"name": "source2"
+					"name": "crm-database"
 				}
 			],
 			"sinks": [],
@@ -17,7 +17,7 @@
 					"name": "Join1"
 				}
 			],
-			"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: false) ~> source1\nsource(allowSchemaDrift: true,\n\tvalidateSchema: false) ~> source2\nsource1, source2 join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),\n\tjoinType:'inner',\n\tbroadcast: 'none')~> Join1"
+			"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: false) ~> clickstream\nsource(allowSchemaDrift: true,\n\tvalidateSchema: false) ~> crm-database\nclickstream, crm-database join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),\n\tjoinType:'inner',\n\tbroadcast: 'none')~> Join1"
 		}
 	}
 }
