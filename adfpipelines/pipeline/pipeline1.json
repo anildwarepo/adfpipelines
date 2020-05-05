@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "ConvertCSV-Parquet",
+				"name": "anildwamergeclickstream",
 				"type": "ExecuteDataFlow",
 				"dependsOn": [],
 				"policy": {
@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataflow": {
-						"referenceName": "dataflow1",
+						"referenceName": "anildwamergeclickstream",
 						"type": "DataFlowReference"
 					},
 					"compute": {
