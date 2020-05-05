@@ -1,0 +1,23 @@
+{
+	"name": "anildwaclickstreamoutput",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "anildwaadlsv2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "anildwaclickstreamoutput.csv",
+				"fileSystem": "clickstreamdata"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
